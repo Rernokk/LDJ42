@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//			Instantiate(spawn, new Vector3(Random.Range(0, 14f), Random.Range(0, 14f), 0), Quaternion.identity);
+		//Instantiate(spawn, new Vector3(Random.Range(0, 14f), Random.Range(0, 14f), 0), Quaternion.identity);
 	}
 
 	// Update is called once per frame

@@ -69,7 +69,7 @@ public class Node : MonoBehaviour {
 			{
 				if (n.isActive)
 				{
-					Debug.DrawLine(transform.position, n.transform.position, Color.red);
+					//Debug.DrawLine(transform.position, n.transform.position, Color.red);
 				}
 			}
 		}

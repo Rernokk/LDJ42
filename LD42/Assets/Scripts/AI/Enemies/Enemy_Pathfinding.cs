@@ -9,42 +9,62 @@ public class Enemy_Pathfinding : MonoBehaviour
 	float MovementSpeed;
 
 	[SerializeField]
-	Vector2 target;
-
-	AIGrid pathManager;
 	List<Vector3> currentPath = new List<Vector3>();
+
+	GameObject targetPlayer;
+	AIGrid pathManager;
 	Rigidbody2D rgd2d;
 	float pathTimer = 3f;
+	float attackRange = 1f;
+
+	#region Properties
+	public float AttackRange {
+		get {
+			return attackRange;
+		}
+		set{
+			attackRange = value;
+		}
+	}
+	#endregion
 
 	void Start()
 	{
 		pathManager = GameObject.FindGameObjectWithTag("AIManager").GetComponent<AIGrid>();
 		rgd2d = GetComponent<Rigidbody2D>();
 		rgd2d.gravityScale = 0;
-		GetNewTarget();
+		targetPlayer = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void Update()
 	{
-		if (currentPath.Count > 0)
+
+		if (Vector3.Distance(transform.position, targetPlayer.transform.position) < attackRange)
 		{
-			rgd2d.velocity = (currentPath[0] - transform.position).normalized * MovementSpeed;
-			if (Vector3.Distance(transform.position, currentPath[0]) < .45f)
-			{
-				currentPath.RemoveAt(0);
-			}
+			rgd2d.velocity = Vector3.zero;
 		}
 		else
 		{
-			rgd2d.velocity = Vector2.zero;
-			if (pathTimer <= 0)
+			RaycastHit2D[] inf = Physics2D.RaycastAll(transform.position, (targetPlayer.transform.position - transform.position).normalized, 10f, LayerMask.NameToLayer("Obstacles"));
+			if (Vector3.Distance(transform.position, targetPlayer.transform.position) < 10f && inf.Length == 0)
 			{
-				pathTimer = Random.Range(.2f, .4f);
-				GetNewTarget();
+				rgd2d.velocity = (targetPlayer.transform.position - transform.position).normalized * MovementSpeed;
 			}
 			else
 			{
-				pathTimer -= Time.deltaTime;
+				if (currentPath.Count > 0)
+				{
+					rgd2d.velocity = (currentPath[0] - transform.position).normalized * MovementSpeed;
+					if (Vector2.Distance(transform.position, currentPath[0]) < .15f)
+					{
+						currentPath.RemoveAt(0);
+					}
+					currentPath = pathManager.BestFirst(transform.position, targetPlayer.transform.position);
+				}
+				else
+				{
+					currentPath = pathManager.BestFirst(transform.position, targetPlayer.transform.position);
+				}
 			}
 		}
 	}
@@ -60,5 +80,17 @@ public class Enemy_Pathfinding : MonoBehaviour
 				currentPath = pathManager.BestFirst(transform.position, tar);
 			}
 		}
+	}
+
+	bool CanSeePlayer(){
+		if (Vector2.Distance(transform.position, targetPlayer.transform.position) > 5f){
+			return false;
+		}
+		RaycastHit2D inf = Physics2D.Raycast(transform.position, (targetPlayer.transform.position - transform.position).normalized, 10f, LayerMask.NameToLayer("Obstacles"));
+		if (inf.transform == null){
+			print("No Issues, can see");
+			return true;
+		}
+		return false;
 	}
 }

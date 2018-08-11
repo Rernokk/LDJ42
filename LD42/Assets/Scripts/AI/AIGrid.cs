@@ -30,6 +30,12 @@ public class AIGrid : MonoBehaviour
 			mapReady = value;
 		}
 	}
+
+	public Vector2 MapDimensions{
+		get {
+			return new Vector2(mapWidth, mapHeight);
+		}
+	}
 	#endregion
 
 	#region Private Methods
@@ -86,7 +92,7 @@ public class AIGrid : MonoBehaviour
 			obstacle.GetComponent<Collider2D>().OverlapCollider(contactFilter, collisions);
 			foreach (Collider2D coll in collisions)
 			{
-				if (coll != null)
+				if (coll != null && coll.GetComponent<Node>() != null)
 				{
 					coll.GetComponent<Node>().Activated = false;
 					coll.enabled = false;
@@ -97,9 +103,17 @@ public class AIGrid : MonoBehaviour
 
 	void DisableNodeColliders()
 	{
-		foreach (Node node in nodes)
-		{
-			node.DisableCollider();
+		for (int i = 0; i < mapWidth; i++){
+			for (int j = 0; j < mapHeight; j++){
+				nodes[i,j].DisableCollider();
+				if (!nodes[i,j].Activated){
+					foreach (Node n in nodes[i,j].Neighbors){
+						n.Neighbors.Remove(nodes[i, j]);
+					}
+					Destroy(nodes[i, j].gameObject);
+					nodes[i, j] = null;
+				}
+			}
 		}
 	}
 
@@ -107,7 +121,8 @@ public class AIGrid : MonoBehaviour
 	{
 		foreach (Node node in nodes)
 		{
-			node.ResetNode();
+			if (node != null)
+				node.ResetNode();
 		}
 	}
 	#endregion
@@ -127,14 +142,17 @@ public class AIGrid : MonoBehaviour
 		Node endGoal = nodes[Mathf.Clamp(Mathf.RoundToInt(end.x), 0, mapWidth - 1), Mathf.Clamp(Mathf.RoundToInt(end.y), 0, mapHeight - 1)];
 
 		//Set "Start Node" correctly.
-		startPosition.BackNode = null;
-		startPosition.BeenVisited = true;
+		if (startPosition != null)
+		{
+			startPosition.BackNode = null;
+			startPosition.BeenVisited = true;
+		}
 		
 		//Add to search queue
 		toVisit.Add(startPosition);
 
 		//If Goals are not active, skip.
-		if (!endGoal.Activated || !startPosition.Activated || startPosition == null || endGoal == null)
+		if (startPosition == null || endGoal == null || !endGoal.Activated || !startPosition.Activated)
 		{
 			print("Node Invalid");
 			return retVal;
@@ -149,47 +167,61 @@ public class AIGrid : MonoBehaviour
 			//Pop Node & Search
 			currNode = toVisit[0];
 			toVisit.RemoveAt(0);
-			
-			//For each neighbor of the current node
-			foreach (Node neighbor in currNode.Neighbors)
-			{
 
-				//If Node is Active, Check it.
-				if (neighbor.Activated)
-				{
-					//Check if neighbor is the goal
-					if (neighbor == endGoal)
-					{
-						print("Found Node, Backing");
-						neighbor.BackNode = currNode;
-						neighbor.BeenVisited = true;
-						currNode = neighbor;
-						while (currNode != null)
-						{
-							retVal.Add(currNode.transform.position);
-							currNode = currNode.BackNode;
-						}
-						retVal.Reverse();
-						return retVal;
-					}
-					//Neighbor is not our goal and has not been visited.
-					else if (!neighbor.BeenVisited)
-					{
-						toVisit.Add(neighbor);
-						neighbor.BackNode = currNode;
-						neighbor.BeenVisited = true;
-						Debug.DrawLine(currNode.transform.position, neighbor.transform.position, Color.blue, 1f);
-					}
+			if (currNode == endGoal){
+				while (currNode.BackNode != null){
+					retVal.Add(currNode.transform.position);
+					currNode = currNode.BackNode;
 				}
-
-				//Else, Mark as visited and skip.
-				else
-				{
-					neighbor.BeenVisited = true;
+				retVal.Reverse();
+				return retVal;
+			} else {
+				for (int i = 0; i < currNode.Neighbors.Count; i++){
+					if (!currNode.Neighbors[i].BeenVisited)
+					{
+						currNode.Neighbors[i].BeenVisited = true;
+						currNode.Neighbors[i].BackNode = currNode;
+						toVisit.Add(currNode.Neighbors[i]);
+					}
 				}
 			}
 		}
 		return retVal;
+	}
+
+	public List<Vector3> GenPath (Vector3 start, Vector3 end){
+
+		List<Vector3> path = new List<Vector3>();
+		Node startNode = nodes[Mathf.Clamp(Mathf.RoundToInt(start.x), 0, mapWidth - 1), Mathf.Clamp(Mathf.RoundToInt(start.y), 0, mapHeight - 1)];
+		ResetNodePathfinding();
+
+		Queue<Node> q = new Queue<Node>();
+		q.Enqueue(startNode);
+		startNode.BeenVisited = true;
+		
+		while (q.Count > 0){
+			Node temp = q.Dequeue();
+
+			//Found End
+			if (temp.transform.position == end){
+				print("Found End");
+				while (temp.BackNode != null){
+					path.Add(temp.transform.position);
+					temp = temp.BackNode;
+				}
+				path.Reverse();
+				return path;
+			}
+
+			for (int i = 0; i < temp.Neighbors.Count; i++){
+				if (!temp.Neighbors[i].BeenVisited){
+					temp.Neighbors[i].BeenVisited = true;
+					temp.Neighbors[i].BackNode = temp;
+					q.Enqueue(temp.Neighbors[i]);
+				}
+			}
+		}
+		return path;
 	}
 	#endregion
 }

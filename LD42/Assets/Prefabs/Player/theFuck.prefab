@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 23933702407085632}
   - component: {fileID: 58802722986512296}
   - component: {fileID: 50856547240297024}
-  m_Layer: 0
+  - component: {fileID: 114571295452816050}
+  m_Layer: 10
   m_Name: theFuck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,3 +121,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114571295452816050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483577023757360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5f677b0bbbf1b43b2b9c6e344a9a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 50
