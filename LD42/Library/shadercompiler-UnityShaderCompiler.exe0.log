@@ -1,5 +1,6 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
+<<<<<<< Updated upstream
 Cmd: preprocess
   insize=1520 outsize=367 ok=1
 Cmd: compileSnippet
@@ -1461,4 +1462,6 @@ Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPH
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+=======
+>>>>>>> Stashed changes
 Cmd: initializeCompiler
