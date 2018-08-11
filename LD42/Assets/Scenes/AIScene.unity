@@ -223,8 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 1267640766500400, guid: f906dd159c4e7f74f8a4b840b1409449, type: 2}
   stepDistance: 1
-  mapWidth: 5
-  mapHeight: 5
+  mapWidth: 15
+  mapHeight: 15
 --- !u!4 &1507645336
 Transform:
   m_ObjectHideFlags: 0
