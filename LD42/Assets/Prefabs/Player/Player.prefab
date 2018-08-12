@@ -39,6 +39,9 @@ GameObject:
   - component: {fileID: 114762027504800850}
   - component: {fileID: 61741774682696352}
   - component: {fileID: 50336236553727852}
+  - component: {fileID: 114456228475166402}
+  - component: {fileID: 114285962339520598}
+  - component: {fileID: 114569108080139260}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -160,6 +163,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114285962339520598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497823665636718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62aeddab272012b4ba5e043e75cd7249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownTime: 3
+  Radius: 3
+  Strength: 0
+  Damage: 10
+  Duration: 8
+  blackholePrefab: {fileID: 1792064459122616, guid: 83ce0e5de9557f2409664a5e0d7f90e4,
+    type: 2}
+--- !u!114 &114456228475166402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497823665636718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530949b2ec83b1045ae6574f3a62c5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownTime: 5
+  JumpDistance: 8
+  mask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+--- !u!114 &114569108080139260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497823665636718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d973a891ef10d74ca37a72645620ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownTime: 1
+  Radius: 3
+  Strength: 5
+  Duration: 4
+  timewellPrefab: {fileID: 1792064459122616, guid: c1213931a5125074d800e62a20a34b1f,
+    type: 2}
 --- !u!114 &114762027504800850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,3 +229,4 @@ MonoBehaviour:
   projectileSpeed: 500
   attackSpeed: 0.5
   theFuck: {fileID: 1483577023757360, guid: 6815ff5e54c308e48bc176f7d91a6026, type: 2}
+  maxHealth: 100

@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544073228}
   - component: {fileID: 544073229}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +667,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   WaveTimer: 5
   BaseSpawnRate: 1
-  spawn: {fileID: 1872569686081972, guid: f432d8d46aed2a6499775d4fde7d65f1, type: 2}
+  spawn:
+  - {fileID: 1872569686081972, guid: f432d8d46aed2a6499775d4fde7d65f1, type: 2}
+  - {fileID: 1109619399872214, guid: 8148573666b74b74c9a35a2cca7de29f, type: 2}
 --- !u!1 &1772192633
 GameObject:
   m_ObjectHideFlags: 0

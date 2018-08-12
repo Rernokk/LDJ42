@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour {
 	float WaveTimer = 5f, BaseSpawnRate = 1f;
 
 	[SerializeField]
-	GameObject spawn;
+	GameObject[] spawn;
 
 	float waveProgress = 0f;
 	float secondsPast = 0f;
@@ -31,7 +31,7 @@ public class WaveManager : MonoBehaviour {
 				print("New 'Wave', Rate: " + spawnRate.Evaluate(waveProgress / WaveTimer) * BaseSpawnRate);
 				for (int i = 0; i < spawnRate.Evaluate(waveProgress / WaveTimer) * BaseSpawnRate; i++)
 				{
-					Instantiate(spawn, new Vector3(Random.Range(1, 13f), Random.Range(1, 13f), 0), Quaternion.identity);
+					Instantiate(spawn[Random.Range(0, spawn.Length)], new Vector3(Random.Range(1, 13f), Random.Range(1, 13f), 0), Quaternion.identity);
 				}
 				secondsPast -= 1f;
 			}

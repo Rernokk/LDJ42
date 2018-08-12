@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacles
   - AIManager
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,6 +20,7 @@ TagManager:
   - Player
   - Player_Projectiles
   - Hazards
+  - Enemy_Projectiles
   - 
   - 
   - 
@@ -37,9 +39,17 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Bounds
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Hazard
+    uniqueID: 2513741005
+    locked: 0
+  - name: Character
+    uniqueID: 1735216519
+    locked: 0
+  - name: Projectile
+    uniqueID: 792380441
     locked: 0

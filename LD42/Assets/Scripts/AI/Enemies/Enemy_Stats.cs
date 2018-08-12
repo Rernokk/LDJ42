@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_Stats : MonoBehaviour {
 	#region Variable
 	[SerializeField]
-	protected int maxHealth;
+	protected float maxHealth;
 
 	[SerializeField]
 	protected bool useHealthBar;
@@ -22,7 +22,7 @@ public class Enemy_Stats : MonoBehaviour {
 	[SerializeField]
 	protected float poolSizeMod = 1.0f;
 
-	protected int currentHealth;
+	protected float currentHealth;
 	protected Enemy_Pathfinding pathfinder;
 	#endregion
 
@@ -58,7 +58,7 @@ public class Enemy_Stats : MonoBehaviour {
 	}
 	#endregion
 
-	public void Damage (int amount){
+	public void Damage (float amount){
 		currentHealth -= amount;
 		if (currentHealth <= 0){
 			Die();
