@@ -60,8 +60,11 @@ public class BlackholePoint : MonoBehaviour
 			if (col.GetComponent<Enemy_Stats>() != null)
 			{
 				col.GetComponent<Enemy_Stats>().Damage(myDamage * Time.deltaTime);
+				col.transform.position = Vector2.Lerp(col.transform.position, transform.position, .02f);
+			} else if (col.GetComponent<Enemy_Projectile>() != null){
+				col.GetComponent<Rigidbody2D>().AddForce((transform.position - col.transform.position).normalized * 5f);
+				col.GetComponent<Enemy_Projectile>().DamageEnemy = true;
 			}
-			col.transform.position = Vector2.Lerp(col.transform.position, transform.position, .02f);
 		}
 		DrawRadius();
 	}

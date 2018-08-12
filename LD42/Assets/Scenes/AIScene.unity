@@ -546,11 +546,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CooldownTime: 3
-  Radius: 5
+  Radius: 3
   Strength: 0
   Damage: 10
   Duration: 8
   blackholePrefab: {fileID: 1792064459122616, guid: 83ce0e5de9557f2409664a5e0d7f90e4,
+    type: 2}
+--- !u!114 &1191680676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1191680674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d973a891ef10d74ca37a72645620ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownTime: 1
+  Radius: 3
+  Strength: 5
+  Duration: 4
+  timewellPrefab: {fileID: 1792064459122616, guid: c1213931a5125074d800e62a20a34b1f,
     type: 2}
 --- !u!1001 &1294723175
 Prefab:
@@ -694,7 +711,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   WaveTimer: 5
   BaseSpawnRate: 1
-  spawn: {fileID: 1872569686081972, guid: f432d8d46aed2a6499775d4fde7d65f1, type: 2}
+  spawn:
+  - {fileID: 1872569686081972, guid: f432d8d46aed2a6499775d4fde7d65f1, type: 2}
+  - {fileID: 1109619399872214, guid: 8148573666b74b74c9a35a2cca7de29f, type: 2}
 --- !u!1 &1772192633
 GameObject:
   m_ObjectHideFlags: 0

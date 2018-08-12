@@ -39,6 +39,7 @@ public class PlayerContoller : MonoBehaviour
 		currentHealth = maxHealth;
 		spellArray = new Spellcast[4];
 		spellArray[0] = GetComponent<BlinkSpell>();
+		spellArray[2] = GetComponent<TimewellSpell>();
 		spellArray[3] = GetComponent<BlackholeSpell>();
 	}
 
@@ -61,6 +62,11 @@ public class PlayerContoller : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			spellArray[0].CastSpell();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			spellArray[2].CastSpell();
 		}
 
 		if (Input.GetKeyDown(KeyCode.Alpha4))
