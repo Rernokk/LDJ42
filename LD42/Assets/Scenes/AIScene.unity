@@ -529,46 +529,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1191680674 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1497823665636718, guid: 6116601be72e70c4fbcb23468023e6f6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1294723175}
---- !u!114 &1191680675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191680674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62aeddab272012b4ba5e043e75cd7249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CooldownTime: 3
-  Radius: 3
-  Strength: 0
-  Damage: 10
-  Duration: 8
-  blackholePrefab: {fileID: 1792064459122616, guid: 83ce0e5de9557f2409664a5e0d7f90e4,
-    type: 2}
---- !u!114 &1191680676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1191680674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d973a891ef10d74ca37a72645620ae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CooldownTime: 1
-  Radius: 3
-  Strength: 5
-  Duration: 4
-  timewellPrefab: {fileID: 1792064459122616, guid: c1213931a5125074d800e62a20a34b1f,
-    type: 2}
 --- !u!1001 &1294723175
 Prefab:
   m_ObjectHideFlags: 0
@@ -607,10 +567,6 @@ Prefab:
     - target: {fileID: 4118108155845052, guid: 6116601be72e70c4fbcb23468023e6f6, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1497823665636718, guid: 6116601be72e70c4fbcb23468023e6f6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6116601be72e70c4fbcb23468023e6f6, type: 2}
