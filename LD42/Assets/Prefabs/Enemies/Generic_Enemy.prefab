@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4070926026520622}
   - component: {fileID: 33895489274850916}
   - component: {fileID: 23500519254346168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 50526077807144026}
   - component: {fileID: 114637565256719078}
   - component: {fileID: 58185716904995558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Generic_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  useHealthBar: 0
+  useHealthBar: 1
   healthBar: {fileID: 1014243761775128, guid: dc8723d8f3beafa43bd5aeac6a81191b, type: 2}
   attackRange: 1
   acidPool: {fileID: 1284474412808894, guid: 1bc2fe155ff486741a6499a7e1ea3912, type: 2}

@@ -17,6 +17,8 @@ public class PlayerContoller : MonoBehaviour
 	[SerializeField]
 	float maxHealth = 100f;
 	float currentHealth;
+
+	Spellcast[] spellArray;
 	#endregion
 
 	#region Properties
@@ -28,12 +30,16 @@ public class PlayerContoller : MonoBehaviour
 		}
 	}
 	#endregion
+
 	#region Private Methods
 	// Use this for initialization yea yea yea 
 	void Start()
 	{
 		boxyBoi = GetComponent<Rigidbody2D>();
 		currentHealth = maxHealth;
+		spellArray = new Spellcast[4];
+		spellArray[0] = GetComponent<BlinkSpell>();
+		spellArray[3] = GetComponent<BlackholeSpell>();
 	}
 
 	// Update is called once per frame
@@ -51,6 +57,22 @@ public class PlayerContoller : MonoBehaviour
 			PlayerTheFuck();
 		}
 
+		#region Spellcasting
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			spellArray[0].CastSpell();
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			spellArray[3].CastSpell();
+		}
+
+		for (int i = 0; i < 4; i++){
+			if (spellArray[i] != null)
+				spellArray[i].Tick();
+		}
+		#endregion
 	}
 
 	//have the player face the mouse
